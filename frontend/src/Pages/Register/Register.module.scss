@@ -1,0 +1,42 @@
+.Container {
+  display: flex;
+  height: 80vh;
+  align-items: center;
+  .ImgContainer {
+    width: 50%;
+    img {
+      object-fit: contain;
+      margin: 0 5%;
+    }
+  }
+  .InfoContainer {
+    width: 50%;
+    align-self: center;
+    p {
+      width: 70%;
+      text-align: center;
+      align-self: center;
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      line-height: 2rem;
+      opacity: 0.6;
+    }
+  }
+}
+
+// # Mobile
+@media only screen and (max-width: 480px) {
+  .Container {
+    flex-direction: column;
+    .InfoContainer {
+      width: 100%;
+      p {
+        width: 80%;
+        opacity: 0.6;
+      }
+    }
+    .ImgContainer {
+      width: 100%;
+    }
+  }
+}

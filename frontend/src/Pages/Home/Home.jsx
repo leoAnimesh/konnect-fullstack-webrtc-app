@@ -13,13 +13,13 @@ const Home = () => {
           A multi platform Realtime communication solution which is platform
           independent too To give it a try join now...
         </p>
-        <Button title="Get started" />
+        <Button title="Get started" link={true} linkPath="/register" />
         <span>
           Existing user ? <Link to="/login">Login Now</Link>
         </span>
       </div>
       <div className={styles.ImgContainer}>
-        <img src="/Images/HomeHero.svg" alt="homehero" />
+        <img src="/Images/Home.svg" alt="homehero" />
       </div>
     </div>
   );

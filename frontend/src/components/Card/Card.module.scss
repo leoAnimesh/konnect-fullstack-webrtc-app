@@ -1,6 +1,8 @@
 .cardContainer {
   background-color: var(--color-secondary);
-  width: 30%;
+  width: 70%;
+  margin: 0 auto;
+  border-radius: 2em;
   height: 30rem;
   display: flex;
   flex-direction: column;
@@ -9,11 +11,26 @@
     display: flex;
     justify-content: center;
     padding: 2rem 0;
+    align-items: center;
     h1 {
       font-size: 1.8rem;
     }
     img {
       margin-right: 1rem;
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+}
+
+// # Mobile
+@media only screen and (max-width: 480px) {
+  .cardContainer {
+    width: 90%;
+    .cardHeading {
+      h1 {
+        font-size: 1.4rem;
+      }
     }
   }
 }

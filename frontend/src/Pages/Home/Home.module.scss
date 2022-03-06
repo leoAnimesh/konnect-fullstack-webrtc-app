@@ -1,33 +1,66 @@
 .Container {
-  display: grid;
-  grid-template-columns: repeat(2, 50%);
-  grid-template-rows: 85vh;
+  display: flex;
+  height: 85vh;
   .InfoContainer {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    margin-left: 3rem;
     align-self: center;
-    height: 60%;
+    width: 50%;
+    margin-left: 3rem;
     h1 {
       font-size: 4.8rem;
+      margin-bottom: 0.5rem;
     }
     h2 {
       font-size: 2.4rem;
       line-height: 2.8rem;
       font-weight: 400;
+      margin-bottom: 2rem;
     }
     p {
       width: 60%;
       font-size: 1.4rem;
       line-height: 2rem;
       opacity: 0.8;
+      margin-bottom: 2rem;
+    }
+    span {
+      margin-top: 2rem;
     }
   }
   .ImgContainer {
+    width: 50%;
     img {
       object-fit: contain;
       margin: 0 5%;
     }
   }
 }
+
+// # Mobile
+@media only screen and (max-width: 480px) {
+  .Container {
+    flex-direction: column-reverse;
+    .InfoContainer {
+      width: 100%;
+      h1 {
+        font-size: 3.6rem;
+      }
+      h2 {
+        font-size: 2rem;
+      }
+      p {
+        width: 90%;
+      }
+    }
+    .ImgContainer {
+      width: 100%;
+    }
+  }
+}
+
+// Tablet
+// only screen and (min-width: 768px)
+
+// # Huge
+// only screen and (min-width: 1280px)

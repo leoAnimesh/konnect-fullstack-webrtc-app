@@ -1,0 +1,14 @@
+.Input {
+  width: 65%;
+  margin: 0 auto;
+  background-color: #343131;
+  border-style: none;
+  outline: none;
+  color: var(--color-white);
+  padding: 1.5rem 2rem;
+  border-radius: 1.5rem;
+}
+
+// # Mobile
+@media only screen and (max-width: 480px) {
+}

@@ -5,15 +5,15 @@ import styles from "./Header.module.scss";
 const Header = (props) => {
   return (
     <nav className={styles.container}>
-      <Link to="/">
-        <div>
+      <div>
+        <Link to="/">
           <img src="/Images/Logo.svg" alt="logo" />
           <div>
             <h1>Konnect</h1>
             <span>Let's Connect</span>
           </div>
-        </div>
-      </Link>
+        </Link>
+      </div>
     </nav>
   );
 };
