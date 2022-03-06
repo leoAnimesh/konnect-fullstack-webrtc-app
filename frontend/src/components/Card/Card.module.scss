@@ -1,0 +1,19 @@
+.cardContainer {
+  background-color: var(--color-secondary);
+  width: 30%;
+  height: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .cardHeading {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+    h1 {
+      font-size: 1.8rem;
+    }
+    img {
+      margin-right: 1rem;
+    }
+  }
+}
