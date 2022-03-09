@@ -12,6 +12,23 @@
   .InfoContainer {
     width: 50%;
     align-self: center;
+    .ToggleArea {
+      width: 65%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: flex-end;
+      .ToggleBtn {
+        background-color: var(--color-secondary);
+        color: var(--color-white);
+        width: 5rem;
+        height: 4.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 1rem 0.5rem;
+        border-radius: 1rem;
+      }
+    }
     p {
       width: 70%;
       text-align: center;
@@ -30,6 +47,9 @@
     flex-direction: column;
     .InfoContainer {
       width: 100%;
+      .ToggleArea {
+        width: 85%;
+      }
       p {
         width: 80%;
         opacity: 0.6;

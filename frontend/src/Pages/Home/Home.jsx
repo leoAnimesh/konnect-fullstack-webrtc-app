@@ -1,6 +1,5 @@
 import styles from "./Home.module.scss";
 import { Button } from "../../components";
-import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div className={`container ${styles.Container}`}>
@@ -13,10 +12,7 @@ const Home = () => {
           A multi platform Realtime communication solution which is platform
           independent too To give it a try join now...
         </p>
-        <Button title="Get started" link={true} linkPath="/register" />
-        <span>
-          Existing user ? <Link to="/login">Login Now</Link>
-        </span>
+        <Button title="Get started" link={true} linkPath="/authenticate/" />
       </div>
       <div className={styles.ImgContainer}>
         <img src="/Images/Home.svg" alt="homehero" />

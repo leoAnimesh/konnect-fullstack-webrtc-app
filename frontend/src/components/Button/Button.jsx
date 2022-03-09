@@ -5,20 +5,21 @@ const Button = ({
   title = "button",
   link = false,
   linkPath = "#",
-  btnIcon = "",
+  rightIcon,
+  linkStyles = {},
   ...rest
 }) => {
   return (
     <>
       {link ? (
-        <Link to={linkPath} className={styles.container}>
+        <Link to={linkPath} style={linkStyles} className={styles.container}>
           {title}
-          <img src={btnIcon} className={styles.BtnIcon} alt="icon" />
+          {rightIcon}
         </Link>
       ) : (
         <button className={styles.container} {...rest}>
           {title}
-          <img src={btnIcon} className={styles.BtnIcon} alt="icon" />
+          {rightIcon}
         </button>
       )}
     </>
