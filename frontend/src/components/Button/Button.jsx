@@ -12,7 +12,12 @@ const Button = ({
   return (
     <>
       {link ? (
-        <Link to={linkPath} style={linkStyles} className={styles.container}>
+        <Link
+          to={linkPath}
+          style={linkStyles}
+          {...rest}
+          className={styles.container}
+        >
           {title}
           {rightIcon}
         </Link>

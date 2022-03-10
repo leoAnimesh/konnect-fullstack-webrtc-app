@@ -28,12 +28,14 @@ const Mail = () => {
           <Input type="email" placeholder="Eg : examplemail@abc.com" />
           <Button
             title="Next"
-            style={{
+            linkStyles={{
               alignSelf: "center",
               marginTop: "3rem",
               borderRadius: 20,
               padding: "1rem 5rem",
             }}
+            linkPath="/authenticate/otp"
+            link={true}
             rightIcon={<FaArrowRight style={{ marginLeft: "1rem" }} />}
           />
           <p>

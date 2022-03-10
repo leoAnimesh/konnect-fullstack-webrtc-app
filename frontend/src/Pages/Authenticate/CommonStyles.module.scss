@@ -4,9 +4,11 @@
   align-items: center;
   .ImgContainer {
     width: 50%;
+    height: 100%;
+    object-fit: contain;
     img {
-      object-fit: contain;
-      margin: 0 5%;
+      width: 100%;
+      height: 100%;
     }
   }
   .InfoContainer {

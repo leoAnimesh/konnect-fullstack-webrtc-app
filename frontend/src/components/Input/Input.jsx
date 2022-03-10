@@ -1,6 +1,6 @@
 import styles from "./Input.module.scss";
 
-const Input = ({ ...rest }) => {
+const Input = ({ leftIcon, ...rest }) => {
   return <input className={styles.Input} {...rest} />;
 };
 

@@ -10,7 +10,8 @@
 :root {
   --color-primary: #000;
   --color-secondary: #1d1d1d;
-  --color-tertiary: #5463ff;
+  --color-tertiary: #343131;
+  --color-blue: #5463ff;
   --color-white: #fff;
 }
 
@@ -36,7 +37,7 @@ ul {
 
 a {
   text-decoration: none;
-  color: var(--color-tertiary);
+  color: var(--color-blue);
 }
 
 img {
