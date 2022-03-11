@@ -11,10 +11,7 @@ import {
   Rooms,
 } from "./Pages";
 import Eror404 from "./Pages/PageNotFound/Eror404";
-
-const isAuth = false;
-const Activated = false;
-const user = isAuth && Activated ? true : false;
+import { useSelector } from "react-redux";
 
 const ProtectedRoute = ({ children, isAllowed, redirectTo }) => {
   if (!isAllowed) {
@@ -24,6 +21,11 @@ const ProtectedRoute = ({ children, isAllowed, redirectTo }) => {
 };
 
 const App = () => {
+  const { isAuth, user } = useSelector((state) => state.auth);
+  let Activated = false;
+  if (user) {
+    Activated = user.activated;
+  }
   return (
     <div className="container">
       <Header />
@@ -64,7 +66,10 @@ const App = () => {
         <Route
           path="/rooms"
           element={
-            <ProtectedRoute isAllowed={user} redirectTo="/authenticate/">
+            <ProtectedRoute
+              isAllowed={isAuth && Activated}
+              redirectTo="/authenticate/"
+            >
               <Rooms />
             </ProtectedRoute>
           }

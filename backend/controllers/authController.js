@@ -6,6 +6,7 @@ const {
 } = require("../services/otpService");
 const { findUser, createUser } = require("../services/userService");
 const { generateToken } = require("../services/tokenService");
+const userDtos = require("../dtos/userDtos");
 
 const sendOtpController = async (req, res) => {
   const { phone } = req.body;
@@ -83,7 +84,8 @@ const verifyOtpController = async (req, res) => {
     httpOnly: true,
   });
 
-  res.json({ acessToken });
+  const userData = new userDtos(user);
+  res.json({ acessToken, user: userData });
 };
 
 module.exports = {
