@@ -5,7 +5,14 @@ const {
   verifyOtp,
 } = require("../services/otpService");
 const { findUser, createUser } = require("../services/userService");
-const { generateToken } = require("../services/tokenService");
+const {
+  generateToken,
+  storeRefreshToken,
+  verifyRefreshToken,
+  findRefreshToken,
+  updateRefreshToken,
+  removeToken,
+} = require("../services/tokenService");
 const userDtos = require("../dtos/userDtos");
 
 const sendOtpController = async (req, res) => {
@@ -47,7 +54,7 @@ const verifyOtpController = async (req, res) => {
 
   const [hashedOtp, expires] = hash.split(".");
 
-  if (Date.now > +expires) {
+  if (Date.now() > +expires) {
     res.status(400).json({ message: "otp expired" });
   }
 
@@ -79,16 +86,86 @@ const verifyOtpController = async (req, res) => {
     activated: false,
   });
 
-  res.cookie("refreshTokken", refreshToken, {
+  await storeRefreshToken(refreshToken, user._id);
+
+  res.cookie("refreshToken", refreshToken, {
     maxAge: 1000 * 60 * 60 * 24 * 30,
     httpOnly: true,
   });
 
-  const userData = new userDtos(user);
-  res.json({ acessToken, user: userData });
+  res.cookie("accessToken", acessToken, {
+    maxAge: 1000 * 60 * 60 * 24 * 30,
+    httpOnly: true,
+  });
+
+  const userDto = new userDtos(user);
+  res.json({ user: userDto, auth: true });
+};
+
+const refreshController = async (req, res) => {
+  // get refresh token from cookie
+  const { refreshToken: refreshTokenFromCookie } = req.cookies;
+  // check if token is valid
+  let userData;
+  try {
+    userData = await verifyRefreshToken(refreshTokenFromCookie);
+  } catch (err) {
+    res.status(401).json({ message: "invalid token" });
+  }
+  //check if token is in db
+  try {
+    const token = await findRefreshToken(userData._id, refreshTokenFromCookie);
+    if (!token) {
+      res.status(401).json({ message: "invalid token" });
+    }
+  } catch (err) {
+    res.status(500).json({ message: "Internal server error" });
+  }
+  // check if user is valid
+  const user = await findUser({ _id: userData._id });
+  if (!user) {
+    res.status(404).json({ message: "no user " });
+  }
+  //generate new tokens
+  const { refreshToken, acessToken } = await generateToken({
+    _id: userData._id,
+  });
+  //update refresh token
+  try {
+    await updateRefreshToken(userData._id, refreshToken);
+  } catch (err) {
+    res.status(500).json({ message: "error updating refresh token " });
+  }
+  //put in cookie
+  res.cookie("refreshToken", refreshToken, {
+    maxAge: 1000 * 60 * 60 * 24 * 30,
+    httpOnly: true,
+  });
+
+  res.cookie("accessToken", acessToken, {
+    maxAge: 1000 * 60 * 60 * 24 * 30,
+    httpOnly: true,
+  });
+
+  // response
+  const userDto = new userDtos(user);
+  res.json({ user: userDto, auth: true });
+};
+
+const logoutController = async (req, res) => {
+  const { refreshToken } = req.cookies;
+  //delete refresh token from db
+  await removeToken(refreshToken);
+  //delete cookie
+  res.clearCookie("refreshToken");
+  res.clearCookie("accessToken");
+  //response
+  res.json({ user: null, auth: false });
 };
 
 module.exports = {
   sendOtpController,
   verifyOtpController,
+  refreshController,
+  logoutController,
 };

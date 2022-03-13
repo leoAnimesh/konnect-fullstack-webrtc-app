@@ -6,12 +6,15 @@ import {
   Mail,
   Otp,
   PhoneNo,
-  UserInfo,
   Home,
   Rooms,
+  UserName,
+  UserPhoto,
 } from "./Pages";
 import Eror404 from "./Pages/PageNotFound/Eror404";
 import { useSelector } from "react-redux";
+import { useLoadingWithRefresh } from "./hooks/useLoadingWithRefresh";
+import Loader from "./components/Loader/Loader";
 
 const ProtectedRoute = ({ children, isAllowed, redirectTo }) => {
   if (!isAllowed) {
@@ -26,7 +29,10 @@ const App = () => {
   if (user) {
     Activated = user.activated;
   }
-  return (
+  const { loading } = useLoadingWithRefresh();
+  return loading ? (
+    <Loader />
+  ) : (
     <div className="container">
       <Header />
       <Routes>
@@ -61,7 +67,8 @@ const App = () => {
             </ProtectedRoute>
           }
         >
-          <Route index element={<UserInfo />} />
+          <Route index element={<UserName />} />
+          <Route path="userphoto" element={<UserPhoto />} />
         </Route>
         <Route
           path="/rooms"

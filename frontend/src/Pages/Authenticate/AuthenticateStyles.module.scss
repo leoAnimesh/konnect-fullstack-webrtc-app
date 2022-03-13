@@ -1,6 +1,6 @@
 .Container {
   display: flex;
-  height: 80vh;
+  height: calc(100vh - 10rem);
   align-items: center;
   .ImgContainer {
     width: 50%;

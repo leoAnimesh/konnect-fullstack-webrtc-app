@@ -1,4 +1,4 @@
-import styles from "../CommonStyles.module.scss";
+import styles from "../AuthenticateStyles.module.scss";
 import { Card, Input, Button } from "../../../components";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -13,7 +13,6 @@ const Otp = () => {
   const dispatch = useDispatch();
   const submit = async () => {
     const { data } = await verifyOtp({ phone, hash, otp });
-    console.log(data);
     dispatch(setAuth(data));
   };
   return (

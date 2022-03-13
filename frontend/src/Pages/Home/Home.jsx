@@ -1,6 +1,8 @@
 import styles from "./Home.module.scss";
 import { Button } from "../../components";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
+  const naviagate = useNavigate();
   return (
     <div className={`container ${styles.Container}`}>
       <div className={styles.InfoContainer}>
@@ -12,7 +14,10 @@ const Home = () => {
           A multi platform Realtime communication solution which is platform
           independent too To give it a try join now...
         </p>
-        <Button title="Get started" link={true} linkPath="/authenticate/" />
+        <Button
+          title="Get started"
+          onClick={() => naviagate("/authenticate/")}
+        />
       </div>
       <div className={styles.ImgContainer}>
         <img src="/Images/Home.svg" alt="homehero" />

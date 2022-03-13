@@ -4,5 +4,6 @@ export { default as Activate } from "./Activate/Activate";
 export { default as Mail } from "./Authenticate/Mail/Mail";
 export { default as PhoneNo } from "./Authenticate/PhoneNo/PhoneNo";
 export { default as Otp } from "./Authenticate/Otp/Otp";
-export { default as UserInfo } from "./Activate/UserInfo/UserInfo";
+export { default as UserName } from "./Activate/UserName/UserName";
+export { default as UserPhoto } from "./Activate/UserPhoto/UserPhoto";
 export { default as Rooms } from "./Rooms/Rooms";

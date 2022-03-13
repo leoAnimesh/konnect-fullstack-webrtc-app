@@ -1,4 +1,4 @@
-import styles from "../CommonStyles.module.scss";
+import styles from "../AuthenticateStyles.module.scss";
 import { Card, Button, Input } from "../../../components";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaArrowRight, FaMobileAlt, FaEnvelope } from "react-icons/fa";
@@ -14,10 +14,12 @@ const PhoneNo = () => {
   const dispatch = useDispatch();
 
   const submit = async () => {
-    const { data } = await sendOtp({ phone: phoneNumber });
-    console.log(data);
-    dispatch(setOtp({ phone: data.phone, hash: data.hash }));
-    navigate("/authenticate/otp");
+    if (phoneNumber.length === 10) {
+      const { data } = await sendOtp({ phone: phoneNumber });
+      console.log(data);
+      dispatch(setOtp({ phone: data.phone, hash: data.hash }));
+      navigate("/authenticate/otp");
+    }
   };
   return (
     <div className={`container ${styles.Container}`}>

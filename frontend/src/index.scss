@@ -44,3 +44,19 @@ img {
   max-width: 100%;
   max-height: 100%;
 }
+
+button,
+a {
+  cursor: pointer;
+}
+
+.btn-link {
+  color: var(--color-blue);
+  background: transparent;
+  outline: none;
+  border-style: none;
+  font-weight: 500;
+  &:hover {
+    color: #fff;
+  }
+}

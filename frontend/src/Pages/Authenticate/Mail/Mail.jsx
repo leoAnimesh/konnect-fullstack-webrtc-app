@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../CommonStyles.module.scss";
+import styles from "../AuthenticateStyles.module.scss";
 import { Card, Button, Input } from "../../../components";
 import { Link, useLocation } from "react-router-dom";
 import { FaArrowRight, FaMobileAlt, FaEnvelope } from "react-icons/fa";
@@ -28,14 +28,12 @@ const Mail = () => {
           <Input type="email" placeholder="Eg : examplemail@abc.com" />
           <Button
             title="Next"
-            linkStyles={{
+            style={{
               alignSelf: "center",
               marginTop: "3rem",
               borderRadius: 20,
               padding: "1rem 5rem",
             }}
-            linkPath="/authenticate/otp"
-            link={true}
             rightIcon={<FaArrowRight style={{ marginLeft: "1rem" }} />}
           />
           <p>
