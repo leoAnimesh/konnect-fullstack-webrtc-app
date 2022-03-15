@@ -30,6 +30,7 @@ const UserPhoto = () => {
   };
 
   const submit = async () => {
+    if (!name && !avatar) return;
     try {
       const { data } = await activate({ name, avatar });
       if (data.auth) {

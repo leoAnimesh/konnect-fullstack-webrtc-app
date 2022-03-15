@@ -11,9 +11,18 @@ const Otp = () => {
   const [otp, setOtp] = useState("");
   const { phone, hash } = useSelector((state) => state.auth.otpData);
   const dispatch = useDispatch();
+  const [inputError, setInputError] = useState(false);
   const submit = async () => {
-    const { data } = await verifyOtp({ phone, hash, otp });
-    dispatch(setAuth(data));
+    if (!phone && !hash) {
+      setInputError(true);
+      return;
+    }
+    try {
+      const { data } = await verifyOtp({ phone, hash, otp });
+      dispatch(setAuth(data));
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div className={`container ${styles.Container}`}>
@@ -27,6 +36,8 @@ const Otp = () => {
             placeholder="Eg : 4 digit code (x x x x)"
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
+            error={inputError}
+            errorMessage="Enter a Mobile number (required)"
           />
           <Button
             title="Next"

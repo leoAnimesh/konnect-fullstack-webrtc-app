@@ -9,16 +9,23 @@ import { setOtp } from "../../../features/authSlice";
 
 const PhoneNo = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const route = useLocation().pathname.split("/")[2];
   const [phoneNumber, setPhoneNumber] = useState("");
-  const dispatch = useDispatch();
+  const [inputError, setInputError] = useState(false);
 
   const submit = async () => {
-    if (phoneNumber.length === 10) {
+    if (!phoneNumber) {
+      setInputError(true);
+      return;
+    }
+    setInputError(false);
+    try {
       const { data } = await sendOtp({ phone: phoneNumber });
-      console.log(data);
       dispatch(setOtp({ phone: data.phone, hash: data.hash }));
       navigate("/authenticate/otp");
+    } catch (err) {
+      console.log(err);
     }
   };
   return (
@@ -45,6 +52,8 @@ const PhoneNo = () => {
             placeholder="Eg : 1234567890"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
+            error={inputError}
+            errorMessage="All feilds are required"
           />
           <Button
             title="Next"

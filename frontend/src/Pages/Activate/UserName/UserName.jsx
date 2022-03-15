@@ -12,9 +12,12 @@ const UserName = () => {
   const { name } = useSelector((state) => state.activate);
   const [fullName, setFullName] = useState(name);
   const submit = () => {
-    if (fullName) {
+    if (!fullName) return;
+    try {
       dispatch(setName(fullName));
       navigate("/activate/userphoto");
+    } catch (err) {
+      console.log(err);
     }
   };
   return (
