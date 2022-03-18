@@ -22,10 +22,11 @@ const PhoneNo = () => {
     setInputError(false);
     try {
       const { data } = await sendOtp({ phone: phoneNumber });
+      console.log(data);
       dispatch(setOtp({ phone: data.phone, hash: data.hash }));
       navigate("/authenticate/otp");
     } catch (err) {
-      console.log(err);
+      console.log("server error");
     }
   };
   return (

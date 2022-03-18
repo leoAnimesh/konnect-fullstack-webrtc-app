@@ -29,7 +29,7 @@ const sendOtpController = async (req, res) => {
   const ttl = 1000 * 60 * 2;
   const expires = Date.now() + ttl;
   const data = `${phone}.${otp}.${expires}`;
-  const hash = await hashOtp(data);
+  const hash = hashOtp(data);
 
   //send otp via sms and hash to client
   try {
@@ -111,20 +111,24 @@ const refreshController = async (req, res) => {
     userData = await verifyRefreshToken(refreshTokenFromCookie);
   } catch (err) {
     res.status(401).json({ message: "invalid token" });
+    return;
   }
   //check if token is in db
   try {
     const token = await findRefreshToken(userData._id, refreshTokenFromCookie);
     if (!token) {
       res.status(401).json({ message: "invalid token" });
+      return;
     }
   } catch (err) {
     res.status(500).json({ message: "Internal server error" });
+    return;
   }
   // check if user is valid
   const user = await findUser({ _id: userData._id });
   if (!user) {
     res.status(404).json({ message: "no user " });
+    return;
   }
   //generate new tokens
   const { refreshToken, acessToken } = await generateToken({
@@ -135,6 +139,7 @@ const refreshController = async (req, res) => {
     await updateRefreshToken(userData._id, refreshToken);
   } catch (err) {
     res.status(500).json({ message: "error updating refresh token " });
+    return;
   }
   //put in cookie
   res.cookie("refreshToken", refreshToken, {

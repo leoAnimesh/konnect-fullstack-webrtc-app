@@ -29,7 +29,7 @@ const Header = () => {
         <div className={styles.rightContainer}>
           <img src={user.avatar} alt="avatar" />
           <div className={styles.userInfo}>
-            <p>{user.name}</p>
+            <p>Hey {user.name.split(" ")[0]}</p>
             <Button className="btn-link" onClick={logoutUser} title="logout" />
           </div>
         </div>

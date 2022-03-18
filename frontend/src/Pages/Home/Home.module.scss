@@ -1,7 +1,7 @@
 .Container {
   display: flex;
   align-items: center;
-  height: 85vh;
+  height: calc(100vh - 10rem);
   .InfoContainer {
     display: flex;
     flex-direction: column;

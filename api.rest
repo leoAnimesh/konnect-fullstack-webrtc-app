@@ -3,7 +3,7 @@ POST http://localhost:5000/api/send-otp HTTP/1.1
 Content-Type: application/json
 
 {
-    "phone":"+918617524338"
+    "phone":"8967888480"
 }
 
 ###
@@ -11,7 +11,7 @@ POST http://localhost:5000/api/verify-otp HTTP/1.1
 Content-Type: application/json
 
 {
-    "phone":"+918617524338",
-    "otp":2415,
-    "hash":"303a22deb0a29963d8df834359c93ac5959d9de07fedf1a8221f394a9d2343ae.1647004402326"
+    "phone":"8967888480",
+    "otp":"5174",
+    "hash":"b66a1346f0ed1f7ed779d184e1a0af1cbc9c06d5680e7d54cbb51dcdb0cd4b0d.1647353044209"
 }

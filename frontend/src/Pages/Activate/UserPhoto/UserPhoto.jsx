@@ -24,10 +24,6 @@ const UserPhoto = () => {
       dispatch(setAvatar(reader.result));
     };
   };
-  const getrandomImage = (name) => {
-    setImage(`https://robohash.org/${name.split(" ")[0]}
-  }?set=set${Math.floor(Math.random() * 4) + 1}&size=150x150`);
-  };
 
   const submit = async () => {
     if (!name && !avatar) return;
@@ -51,12 +47,6 @@ const UserPhoto = () => {
           <Card heading={`Hey, ${name}`} headingIcon="/Images/monkey.svg">
             <div className={styles.profileImage}>
               <img src={image} alt="profile" />
-              <RiRefreshFill
-                size={24}
-                className={styles.getRandomBtn}
-                color="#fff"
-                onClick={() => getrandomImage(name)}
-              />
             </div>
             <input
               ref={getPhoto}
